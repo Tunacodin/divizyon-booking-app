@@ -113,32 +113,30 @@ export function BookingPage() {
           </div>
         </section>
 
-        {/* Main Content: Sidebar + Detail - Fixed height for single screen view */}
-        <section className="flex min-h-[calc(100vh-12rem)] items-start justify-center py-3 lg:py-4">
-          <div className="flex gap-3 lg:gap-4 items-start">
+        {/* Main Content: Sidebar + Detail - Responsive grid layout */}
+        <section className="flex-1 container-responsive py-4 lg:py-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[16rem_1fr] xl:grid-cols-[20rem_1fr] gap-4 lg:gap-6 items-start">
             {/* Sidebar - Studio List */}
-            <aside className="flex w-64 shrink-0 flex-col xl:w-80 sticky top-6">
-              <h2 className="shrink-0 mb-4 text-sm font-semibold uppercase tracking-wide text-textMuted">
+            <aside className="flex flex-col lg:sticky lg:top-6">
+              <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-textMuted">
                 Stüdyolar
               </h2>
-              <div className="flex flex-1 flex-col overflow-y-auto overflow-x-visible pr-2">
-                <div className="flex flex-col gap-3">
-                  {activeStudios.map((studio) => (
-                    <StudioListItem
-                      key={studio.id}
-                      title={studio.name}
-                      isSelected={studio.id === selectedId}
-                      onClick={() => setSelectedId(studio.id)}
-                      icon={studioIcons[studio.id]}
-                    />
-                  ))}
-                </div>
+              <div className="flex flex-col gap-2 lg:gap-3">
+                {activeStudios.map((studio) => (
+                  <StudioListItem
+                    key={studio.id}
+                    title={studio.name}
+                    isSelected={studio.id === selectedId}
+                    onClick={() => setSelectedId(studio.id)}
+                    icon={studioIcons[studio.id]}
+                  />
+                ))}
               </div>
             </aside>
 
-            {/* Detail Card - Takes remaining height */}
-            <div className="overflow-hidden flex justify-start items-start">
-              <div className="h-[calc(100vh-18rem)] w-[500px]">
+            {/* Detail Card - Responsive sizing */}
+            <div className="w-full max-w-2xl mx-auto lg:mx-0">
+              <div className="h-[calc(100vh-20rem)] lg:h-[calc(100vh-16rem)]">
                 {selectedStudio ? (
                   <div
                     key={selectedStudio.id}
