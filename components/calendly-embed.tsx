@@ -58,7 +58,7 @@ export function CalendlyEmbed({
               target="_blank"
               rel="noopener noreferrer"
             >
-              Calendly&apos;yi yeni sekmede açın
+              Calendly&#39;yi yeni sekmede açın
             </a>
             .
           </p>
@@ -134,7 +134,7 @@ export function CalendlyEmbed({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Calendly&apos;den devam edin
+                    Calendly&#39;den devam edin
                   </a>
                   .
                 </p>

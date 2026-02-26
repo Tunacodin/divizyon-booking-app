@@ -47,7 +47,7 @@ export function MobileDetail({ studio, onBack, onBook }: Props) {
   return (
     <div className="flex h-full flex-col overflow-hidden bg-background">
       {/* Image Carousel */}
-      <div className="relative shrink-0 aspect-[4/3] w-full max-h-[50vh] overflow-hidden bg-background">
+      <div className="relative shrink-0 w-full h-[50vh] overflow-hidden bg-background">
         {/* Back and Share Buttons */}
         <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between p-4">
           <button

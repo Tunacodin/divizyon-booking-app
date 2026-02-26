@@ -148,7 +148,7 @@ export function CalendlyModal({ isOpen, onClose, url, title }: Props) {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Calendly&apos;den devam edin
+                      Calendly&#39;den devam edin
                     </a>
                     .
                   </p>

@@ -108,16 +108,16 @@ export function BookingPage() {
             <h1 className="mx-auto max-w-3xl text-center text-xl font-bold leading-tight text-foreground lg:text-2xl">
               Fikirlerini en yüksek kalitede hayata geçirmen için tasarlanmış,
               en yeni teknolojilerle donatılmış özel üretim alanlarımızla tanış.{" "}
-              Hemen Randevu Oluştur
+              Hemen Randevu Oluştur!
             </h1>
           </div>
         </section>
 
         {/* Main Content: Sidebar + Detail - Fixed height for single screen view */}
-        <section className="flex min-h-[calc(100vh-12rem)] items-center justify-center py-6 lg:py-8">
-          <div className="flex h-full gap-3 lg:gap-4 items-start">
+        <section className="flex min-h-[calc(100vh-12rem)] items-start justify-center py-3 lg:py-4">
+          <div className="flex gap-3 lg:gap-4 items-start">
             {/* Sidebar - Studio List */}
-            <aside className="flex h-full w-64 shrink-0 flex-col xl:w-80">
+            <aside className="flex w-64 shrink-0 flex-col xl:w-80 sticky top-6">
               <h2 className="shrink-0 mb-4 text-sm font-semibold uppercase tracking-wide text-textMuted">
                 Stüdyolar
               </h2>
@@ -137,12 +137,12 @@ export function BookingPage() {
             </aside>
 
             {/* Detail Card - Takes remaining height */}
-            <div className="h-full overflow-hidden flex justify-start items-start">
-              <div className="h-full w-[500px]">
+            <div className="overflow-hidden flex justify-start items-start">
+              <div className="h-[calc(100vh-18rem)] w-[500px]">
                 {selectedStudio ? (
                   <div
                     key={selectedStudio.id}
-                    className="h-full animate-slideIn mt-6"
+                    className="h-full w-full animate-slideIn"
                   >
                     <StudioDetailCard
                       title={selectedStudio.name}

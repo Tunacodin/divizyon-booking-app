@@ -54,7 +54,8 @@ export function MobileDiscovery({ studios, onStudioSelect }: Props) {
         <div className="shrink-0 px-4 pb-6 pt-4">
           <p className="text-center text-base leading-relaxed text-textMuted">
             Fikirlerini en yüksek kalitede hayata geçirmen için tasarlanmış,
-            en yeni teknolojilerle donatılmış özel üretim alanlarımızla tanış.
+            en yeni teknolojilerle donatılmış özel üretim alanlarımızla tanış.{" "}
+            <span className="font-bold text-foreground">Hemen Randevu Oluştur!</span>
           </p>
         </div>
 

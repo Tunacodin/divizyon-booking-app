@@ -106,7 +106,7 @@ export function StudioDetailCard({
         </div>
 
         {/* Action Button at Bottom */}
-        <div className="mt-4 shrink-0 border-t border-border pt-4">
+        <div className="shrink-0">
           <button
             type="button"
             onClick={(e) => {
