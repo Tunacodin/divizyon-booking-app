@@ -2,13 +2,11 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Button } from "@/components/button";
 
 type Props = {
   title: string;
   headline: string;
   description: string;
-  imageUrl: string;
   images: string[];
   location?: string;
   onBookClick: () => void;
@@ -18,20 +16,11 @@ export function StudioDetailCard({
   title,
   headline,
   description,
-  imageUrl,
   images,
   location,
   onBookClick,
 }: Props) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
 
   // Otomatik geçiş - 3 saniyede bir
   useEffect(() => {
@@ -47,7 +36,7 @@ export function StudioDetailCard({
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-lg">
       {/* Image Carousel */}
-      <div className="relative w-full shrink-0 overflow-hidden bg-background" style={{ aspectRatio: '3/4', maxHeight: '500px' }}>
+      <div className="relative w-full shrink-0 overflow-hidden bg-background" style={{ aspectRatio: '4/3', maxHeight: '320px' }}>
         <Image
           src={images[currentImageIndex]}
           alt={`${title} - ${currentImageIndex + 1}`}
@@ -76,14 +65,14 @@ export function StudioDetailCard({
         )}
       </div>
 
-      {/* Content - Scrollable if needed */}
-      <div className="flex flex-1 flex-col overflow-y-auto p-6 lg:p-8">
+      {/* Content - No scroll needed */}
+      <div className="flex flex-1 flex-col p-5 lg:p-6">
         <div className="flex-1">
-          <h2 className="text-2xl font-bold text-foreground lg:text-3xl">
+          <h2 className="text-xl font-bold text-foreground lg:text-2xl">
             {title}
           </h2>
           {location && (
-            <div className="mt-2 flex items-center gap-2 text-sm text-textMuted">
+            <div className="mt-1.5 flex items-center gap-2 text-sm text-textMuted">
               <svg
                 className="h-4 w-4"
                 fill="none"
@@ -106,16 +95,16 @@ export function StudioDetailCard({
               <span>{location}</span>
             </div>
           )}
-          <p className="mt-3 text-lg font-semibold text-accent lg:text-xl">
+          <p className="mt-2 text-base font-semibold text-accent lg:text-lg">
             {headline}
           </p>
-          <p className="mt-3 text-base leading-relaxed text-textMuted">
+          <p className="mt-2 text-sm leading-relaxed text-textMuted lg:text-base">
             {description}
           </p>
         </div>
 
         {/* Action Button at Bottom */}
-        <div className="mt-6 shrink-0 border-t border-border pt-4">
+        <div className="mt-4 shrink-0 border-t border-border pt-4">
           <button
             type="button"
             onClick={(e) => {

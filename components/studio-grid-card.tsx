@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Button } from "@/components/button";
-import { cn } from "@/lib/utils";
 
 type Props = {
   title: string;

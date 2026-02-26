@@ -34,7 +34,7 @@ export function MobileDetail({ studio, onBack, onBook }: Props) {
           text: studio.headline,
           url: window.location.href,
         });
-      } catch (err) {
+      } catch {
         console.log("Share cancelled");
       }
     } else {

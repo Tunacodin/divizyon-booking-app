@@ -102,14 +102,13 @@ export function BookingPage() {
             </aside>
 
             {/* Detail Card - Takes remaining height */}
-            <div className="h-full flex-1 overflow-hidden min-w-0 flex justify-center">
-              <div className="h-full w-full max-w-2xl">
+            <div className="h-full flex-1 overflow-hidden min-w-0 flex justify-center items-center px-4">
+              <div className="h-full w-full max-w-lg">
                 {selectedStudio ? (
                   <StudioDetailCard
                     title={selectedStudio.name}
                     headline={selectedStudio.headline}
                     description={selectedStudio.description}
-                    imageUrl={selectedStudio.imageUrl}
                     images={selectedStudio.images}
                     location={selectedStudio.location}
                     onBookClick={openBooking}
