@@ -114,8 +114,8 @@ export function BookingPage() {
         </section>
 
         {/* Main Content: Sidebar + Detail - Responsive grid layout */}
-        <section className="flex-1 container-responsive py-4 lg:py-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[16rem_1fr] xl:grid-cols-[20rem_1fr] gap-4 lg:gap-6 items-start">
+        <section className="flex-1 flex items-start justify-center py-4 lg:py-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[16rem_auto] xl:grid-cols-[20rem_auto] gap-4 lg:gap-6 items-start">
             {/* Sidebar - Studio List */}
             <aside className="flex flex-col lg:sticky lg:top-6">
               <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-textMuted">
