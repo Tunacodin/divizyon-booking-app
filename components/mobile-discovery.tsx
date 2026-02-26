@@ -10,7 +10,7 @@ type Props = {
 
 export function MobileDiscovery({ studios, onStudioSelect }: Props) {
   return (
-    <div className="flex h-full flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-background">
       {/* Header */}
       <div className="shrink-0 px-4 pb-4 pt-6">
         <div className="flex items-center justify-between">
@@ -49,7 +49,7 @@ export function MobileDiscovery({ studios, onStudioSelect }: Props) {
       </div>
 
       {/* Content Wrapper */}
-      <div className="flex flex-1 flex-col overflow-y-auto">
+      <div className="flex flex-1 flex-col">
         {/* Hero Text */}
         <div className="shrink-0 px-4 pb-6 pt-4">
           <p className="text-center text-base leading-relaxed text-textMuted">

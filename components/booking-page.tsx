@@ -46,7 +46,7 @@ export function BookingPage() {
   return (
     <>
       {/* Mobile/Tablet View (< lg) */}
-      <div className="h-screen lg:hidden">
+      <div className="min-h-screen lg:hidden">
         {mobileView === "discovery" ? (
           <MobileDiscovery
             studios={activeStudios}

@@ -45,7 +45,7 @@ export function MobileDetail({ studio, onBack, onBook }: Props) {
   };
 
   return (
-    <div className="flex h-full flex-col overflow-hidden bg-background">
+    <div className="flex min-h-screen flex-col bg-background">
       {/* Image Carousel */}
       <div className="relative shrink-0 w-full h-[50vh] overflow-hidden bg-background">
         {/* Back and Share Buttons */}
@@ -103,9 +103,9 @@ export function MobileDetail({ studio, onBack, onBook }: Props) {
         </div>
       </div>
 
-      {/* Content - Scrollable */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="space-y-4 p-6">
+      {/* Content */}
+      <div className="flex-1">
+        <div className="space-y-4 p-6 pb-8">
           {/* Title and Button - Responsive */}
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h1 className="text-2xl font-bold text-foreground flex-1 min-w-0">
