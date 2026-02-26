@@ -3,25 +3,107 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* COLOR TOKENS (60/30/10) */
+  --color-bg-primary: 246 247 248; /* 60% */
+  --color-bg-secondary: 255 255 255; /* 30% */
+  --color-border-default: 226 232 240;
+  --color-border-hover: 203 213 225;
+  --color-accent: 250 183 88; /* 10% (#fab758) */
+  --color-text-primary: 15 23 42;
+  --color-text-secondary: 30 41 59;
+  --color-text-muted: 100 116 139;
+
+  /* Back-compat for existing Tailwind keys */
+  --background: var(--color-bg-primary);
+  --foreground: var(--color-text-primary);
+
+  /* Single elevation token */
+  --shadow-elev-1: 0 1px 2px 0 rgb(0 0 0 / 0.06), 0 1px 3px 0 rgb(0 0 0 / 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-bg-primary: 9 12 10;
+    --color-bg-secondary: 14 20 16;
+    --color-border-default: 35 44 40;
+    --color-border-hover: 52 64 58;
+    --color-accent: 250 183 88;
+    --color-text-primary: 241 245 249;
+    --color-text-secondary: 203 213 225;
+    --color-text-muted: 148 163 184;
+
+    --background: var(--color-bg-primary);
+    --foreground: var(--color-text-primary);
+
+    --shadow-elev-1: 0 1px 2px 0 rgb(0 0 0 / 0.35), 0 1px 3px 0 rgb(0 0 0 / 0.45);
   }
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-bg-primary));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-border-default));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-border-hover));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Smooth scrolling */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus visible utility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
+  }
+
+  /* Responsive container utilities */
+  .container-responsive {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Smooth animations */
+  @media (prefers-reduced-motion: no-preference) {
+    * {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
