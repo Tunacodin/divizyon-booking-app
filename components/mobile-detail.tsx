@@ -106,10 +106,18 @@ export function MobileDetail({ studio, onBack, onBook }: Props) {
       {/* Content - Scrollable */}
       <div className="flex-1 overflow-y-auto">
         <div className="space-y-4 p-6">
-          {/* Title */}
-          <h1 className="text-2xl font-bold text-foreground">
-            {studio.name}
-          </h1>
+          {/* Title and Button - Responsive */}
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h1 className="text-2xl font-bold text-foreground flex-1 min-w-0">
+              {studio.name}
+            </h1>
+            <button
+              onClick={onBook}
+              className="shrink-0 rounded-xl bg-accent px-6 py-2.5 text-sm font-bold text-white shadow-md transition-all hover:bg-accent/90 active:scale-95"
+            >
+              Randevu Oluştur
+            </button>
+          </div>
 
           {/* Location */}
           <div className="flex items-center gap-2 text-textMuted">
@@ -142,16 +150,6 @@ export function MobileDetail({ studio, onBack, onBook }: Props) {
           {/* Description */}
           <p className="leading-relaxed text-textMuted">{studio.description}</p>
         </div>
-      </div>
-
-      {/* Fixed Bottom Button */}
-      <div className="shrink-0 border-t border-border bg-surface p-6">
-        <button
-          onClick={onBook}
-          className="flex h-14 w-full items-center justify-center rounded-2xl bg-accent text-lg font-bold text-white shadow-lg transition-all hover:bg-accent/90 active:scale-95"
-        >
-          Randevu Oluştur
-        </button>
       </div>
     </div>
   );
