@@ -136,7 +136,7 @@ export function BookingPage() {
 
             {/* Detail Card - Responsive sizing */}
             <div className="w-full max-w-md lg:max-w-lg mx-auto lg:mx-0">
-              <div className="h-[calc(100vh-20rem)] lg:h-[calc(100vh-16rem)]">
+              <div className="h-[70vh] lg:h-[65vh]">
                 {selectedStudio ? (
                   <div
                     key={selectedStudio.id}

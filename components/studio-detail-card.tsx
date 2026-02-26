@@ -100,7 +100,7 @@ export function StudioDetailCard({
           <p className="mt-2 text-sm font-semibold text-foreground lg:text-base">
             {headline}
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-textMuted">
+          <p className="mt-2 text-base leading-relaxed text-textMuted">
             {description}
           </p>
         </div>
