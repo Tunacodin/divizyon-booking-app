@@ -65,9 +65,9 @@ export function StudioDetailCard({
         )}
       </div>
 
-      {/* Content - Scrollable with flex */}
+      {/* Content - No scroll */}
       <div className="flex flex-col min-h-0 p-4 lg:p-5">
-        <div className="flex-1 overflow-y-auto pr-1">
+        <div className="flex-1">
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
             <h2 className="text-lg font-bold text-foreground lg:text-xl">
               {title}
@@ -100,7 +100,7 @@ export function StudioDetailCard({
           <p className="mt-2 text-sm font-semibold text-foreground lg:text-base">
             {headline}
           </p>
-          <p className="mt-2 text-base leading-relaxed text-textMuted">
+          <p className="mt-2 text-sm leading-relaxed text-textMuted">
             {description}
           </p>
         </div>
