@@ -65,9 +65,9 @@ export function StudioDetailCard({
         )}
       </div>
 
-      {/* Content - No scroll needed */}
+      {/* Content - Scrollable */}
       <div className="flex flex-1 flex-col p-5 lg:p-6">
-        <div className="flex-1">
+        <div className="flex-1 overflow-y-auto">
           <div className="flex items-center justify-between gap-4">
             <h2 className="text-xl font-bold text-foreground lg:text-2xl">
               {title}
@@ -106,7 +106,7 @@ export function StudioDetailCard({
         </div>
 
         {/* Action Button at Bottom */}
-        <div className="shrink-0">
+        <div className="shrink-0 mt-4">
           <button
             type="button"
             onClick={(e) => {
