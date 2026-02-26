@@ -103,9 +103,9 @@ export function MobileDetail({ studio, onBack, onBook }: Props) {
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex flex-1 flex-col overflow-y-auto">
-        <div className="flex-1 space-y-4 p-6">
+      {/* Content - Scrollable */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="space-y-4 p-6">
           {/* Title */}
           <h1 className="text-2xl font-bold text-foreground">
             {studio.name}
@@ -142,16 +142,16 @@ export function MobileDetail({ studio, onBack, onBook }: Props) {
           {/* Description */}
           <p className="leading-relaxed text-textMuted">{studio.description}</p>
         </div>
+      </div>
 
-        {/* Fixed Bottom Section */}
-        <div className="shrink-0 border-t border-border bg-surface p-6">
-          <button
-            onClick={onBook}
-            className="flex h-14 w-full items-center justify-center rounded-2xl bg-accent text-lg font-bold text-white shadow-lg transition-all hover:bg-accent/90 active:scale-95"
-          >
-            Randevu Oluştur
-          </button>
-        </div>
+      {/* Fixed Bottom Button */}
+      <div className="shrink-0 border-t border-border bg-surface p-6">
+        <button
+          onClick={onBook}
+          className="flex h-14 w-full items-center justify-center rounded-2xl bg-accent text-lg font-bold text-white shadow-lg transition-all hover:bg-accent/90 active:scale-95"
+        >
+          Randevu Oluştur
+        </button>
       </div>
     </div>
   );
