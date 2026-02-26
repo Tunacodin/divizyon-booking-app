@@ -162,7 +162,7 @@ export function BookingPage() {
         </section>
 
         {/* Footer */}
-        <footer className="shrink-0 border-t border-border bg-[#262b32]">
+        <footer className="shrink-0 mt-8 border-t border-border bg-[#262b32]">
           <div className="container-responsive py-8">
             <div className="flex items-center justify-between gap-8">
               <p className="text-lg leading-relaxed text-white">
