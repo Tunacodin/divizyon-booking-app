@@ -14,7 +14,7 @@ export function StudioListItem({ title, isSelected, onClick }: Props) {
       onClick={onClick}
       className={cn(
         "w-full rounded-xl px-4 py-3 text-left font-semibold transition-all duration-200",
-        "focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2",
+        "focus:outline-none focus:ring-2 focus:ring-accent focus:ring-inset",
         "break-words hyphens-auto",
         isSelected
           ? "bg-accent text-white shadow-[0_2px_8px_rgba(250,183,88,0.25)]"

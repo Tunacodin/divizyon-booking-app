@@ -49,6 +49,11 @@ body {
   background: var(--background);
   min-height: 100vh;
   overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
+html {
+  overscroll-behavior: none;
 }
 
 /* Custom scrollbar */
@@ -105,5 +110,21 @@ body {
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Slide animation for content card */
+  @keyframes slideIn {
+    from {
+      opacity: 0.85;
+      transform: translateX(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slideIn {
+    animation: slideIn 0.25s ease-out;
   }
 }

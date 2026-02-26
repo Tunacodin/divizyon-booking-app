@@ -11,6 +11,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Divizyon | Stüdyo Rezervasyon",
   description: "Divizyon stüdyoları için Calendly üzerinden hızlı rezervasyon.",
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({

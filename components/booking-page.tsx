@@ -53,18 +53,42 @@ export function BookingPage() {
       </div>
 
       {/* Desktop View (>= lg) */}
-      <main className="hidden h-screen flex-col overflow-hidden bg-background lg:flex">
+      <main className="hidden min-h-screen flex-col bg-background lg:flex">
         {/* Header with Logo - Fixed height */}
         <header className="shrink-0 border-b border-border bg-surface/80 backdrop-blur-sm">
           <div className="container-responsive py-4">
-            <div className="relative h-8 w-32">
-              <Image
-                src="/logo-dark@2x.png"
-                alt="Divizyon"
-                fill
-                className="object-contain object-left"
-                priority
-              />
+            <div className="flex items-center justify-between">
+              <div className="relative h-8 w-32">
+                <Image
+                  src="/logo-dark@2x.png"
+                  alt="Divizyon"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
+              </div>
+              <a
+                href="https://www.divizyon.org/index.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all hover:opacity-90 hover:shadow-md"
+                style={{ backgroundColor: '#262b32' }}
+              >
+                Divizyon&apos;a Git
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </a>
             </div>
           </div>
         </header>
@@ -79,15 +103,15 @@ export function BookingPage() {
           </div>
         </section>
 
-        {/* Main Content: Sidebar + Detail - Takes remaining height */}
-        <section className="container-responsive flex flex-1 overflow-hidden py-6 lg:py-8">
-          <div className="flex h-full w-full gap-6 overflow-hidden lg:gap-8">
+        {/* Main Content: Sidebar + Detail - Fixed height for single screen view */}
+        <section className="flex min-h-[calc(100vh-12rem)] items-center justify-center py-6 lg:py-8">
+          <div className="flex h-full gap-3 lg:gap-4 items-start">
             {/* Sidebar - Studio List */}
-            <aside className="h-full w-64 shrink-0 xl:w-80">
-              <div className="flex h-full flex-col gap-3 overflow-y-auto overflow-x-visible pr-2">
-                <h2 className="shrink-0 text-sm font-semibold uppercase tracking-wide text-textMuted">
-                  Stüdyolar
-                </h2>
+            <aside className="flex h-full w-64 shrink-0 flex-col xl:w-80">
+              <h2 className="shrink-0 mb-4 text-sm font-semibold uppercase tracking-wide text-textMuted">
+                Stüdyolar
+              </h2>
+              <div className="flex flex-1 flex-col overflow-y-auto overflow-x-visible pr-2">
                 <div className="flex flex-col gap-3">
                   {activeStudios.map((studio) => (
                     <StudioListItem
@@ -102,17 +126,22 @@ export function BookingPage() {
             </aside>
 
             {/* Detail Card - Takes remaining height */}
-            <div className="h-full flex-1 overflow-hidden min-w-0 flex justify-center items-center px-4">
-              <div className="h-full w-full max-w-lg">
+            <div className="h-full overflow-hidden flex justify-start items-start">
+              <div className="h-full w-[500px]">
                 {selectedStudio ? (
-                  <StudioDetailCard
-                    title={selectedStudio.name}
-                    headline={selectedStudio.headline}
-                    description={selectedStudio.description}
-                    images={selectedStudio.images}
-                    location={selectedStudio.location}
-                    onBookClick={openBooking}
-                  />
+                  <div
+                    key={selectedStudio.id}
+                    className="h-full animate-slideIn"
+                  >
+                    <StudioDetailCard
+                      title={selectedStudio.name}
+                      headline={selectedStudio.headline}
+                      description={selectedStudio.description}
+                      images={selectedStudio.images}
+                      location={selectedStudio.location}
+                      onBookClick={openBooking}
+                    />
+                  </div>
                 ) : (
                   <div className="flex h-full items-center justify-center rounded-2xl border border-border bg-surface">
                     <p className="text-textMuted">Lütfen bir stüdyo seçin.</p>
@@ -122,6 +151,25 @@ export function BookingPage() {
             </div>
           </div>
         </section>
+
+        {/* Footer */}
+        <footer className="shrink-0 border-t border-border bg-[#262b32]">
+          <div className="container-responsive py-8">
+            <div className="flex items-center justify-between gap-8">
+              <p className="text-lg leading-relaxed text-white">
+                Fikirlerini, yeteneklerini ve projelerini Divizyon&apos;un üretim ağıyla buluştur.
+              </p>
+              <a
+                href="https://divizyon.typeform.com/to/tLs5N2lu?typeform-source=www.divizyon.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 rounded-full bg-accent px-8 py-3 text-base font-semibold text-[#262b32] transition-all hover:opacity-90"
+              >
+                Komünite&apos;ye Başvur
+              </a>
+            </div>
+          </div>
+        </footer>
       </main>
     </>
   );

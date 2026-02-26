@@ -34,14 +34,14 @@ export function StudioDetailCard({
   }, [images.length]);
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-lg">
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface">
       {/* Image Carousel */}
       <div className="relative w-full shrink-0 overflow-hidden bg-background" style={{ aspectRatio: '4/3', maxHeight: '320px' }}>
         <Image
           src={images[currentImageIndex]}
           alt={`${title} - ${currentImageIndex + 1}`}
           fill
-          className="object-contain"
+          className="object-cover"
           priority
           sizes="(max-width: 768px) 100vw, 50vw"
         />
@@ -68,34 +68,36 @@ export function StudioDetailCard({
       {/* Content - No scroll needed */}
       <div className="flex flex-1 flex-col p-5 lg:p-6">
         <div className="flex-1">
-          <h2 className="text-xl font-bold text-foreground lg:text-2xl">
-            {title}
-          </h2>
-          {location && (
-            <div className="mt-1.5 flex items-center gap-2 text-sm text-textMuted">
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-              <span>{location}</span>
-            </div>
-          )}
-          <p className="mt-2 text-base font-semibold text-accent lg:text-lg">
+          <div className="flex items-center justify-between gap-4">
+            <h2 className="text-xl font-bold text-foreground lg:text-2xl">
+              {title}
+            </h2>
+            {location && (
+              <div className="flex items-center gap-1.5 text-xs text-textMuted lg:text-sm">
+                <svg
+                  className="h-3.5 w-3.5 lg:h-4 lg:w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                <span className="whitespace-nowrap">{location}</span>
+              </div>
+            )}
+          </div>
+          <p className="mt-2 text-base font-semibold text-foreground lg:text-lg">
             {headline}
           </p>
           <p className="mt-2 text-sm leading-relaxed text-textMuted lg:text-base">

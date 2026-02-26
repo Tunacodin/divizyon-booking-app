@@ -10,7 +10,7 @@ type Props = {
 
 export function MobileDiscovery({ studios, onStudioSelect }: Props) {
   return (
-    <div className="flex h-full flex-col overflow-hidden bg-background">
+    <div className="flex h-full flex-col bg-background">
       {/* Header */}
       <div className="shrink-0 px-4 pb-4 pt-6">
         <div className="flex items-center justify-between">
@@ -23,12 +23,16 @@ export function MobileDiscovery({ studios, onStudioSelect }: Props) {
               priority
             />
           </div>
-          <button
-            className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-surface"
-            aria-label="Ara"
+          <a
+            href="https://www.divizyon.org/index.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold text-white"
+            style={{ backgroundColor: '#262b32' }}
           >
+            Divizyon&apos;a Git
             <svg
-              className="h-6 w-6 text-foreground"
+              className="h-3 w-3"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -37,82 +41,73 @@ export function MobileDiscovery({ studios, onStudioSelect }: Props) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
               />
             </svg>
-          </button>
+          </a>
         </div>
       </div>
 
-
-      {/* Hero Text */}
-      <div className="shrink-0 px-4 pb-6">
-        <p className="text-center text-base leading-relaxed text-textMuted">
-          Fikirlerini en yüksek kalitede hayata geçirmen için tasarlanmış,
-          en yeni teknolojilerle donatılmış özel üretim alanlarımızla tanış.
-        </p>
-      </div>
-
-      {/* Studio Cards - Horizontal Scroll */}
-      <div className="flex-1 overflow-hidden">
-        <div className="mb-4 flex items-center justify-between px-4">
-          <h2 className="text-xl font-bold text-foreground">Stüdyolarımız</h2>
-          <button className="text-sm font-semibold text-accent">
-            Tümünü Gör
-          </button>
+      {/* Content Wrapper */}
+      <div className="flex flex-1 flex-col overflow-y-auto">
+        {/* Hero Text */}
+        <div className="shrink-0 px-4 pb-6 pt-4">
+          <p className="text-center text-base leading-relaxed text-textMuted">
+            Fikirlerini en yüksek kalitede hayata geçirmen için tasarlanmış,
+            en yeni teknolojilerle donatılmış özel üretim alanlarımızla tanış.
+          </p>
         </div>
-        <div className="flex gap-4 overflow-x-auto px-4 pb-4 scrollbar-hide">
-          {studios.map((studio) => (
-            <button
-              key={studio.id}
-              onClick={() => onStudioSelect(studio.id)}
-              className="group shrink-0 w-64"
-            >
-              <div className="overflow-hidden rounded-2xl">
-                {/* Card Image */}
-                <div className="relative aspect-[4/3] h-48 overflow-hidden bg-background">
+
+        {/* Studio Cards - Responsive Grid */}
+        <div className="shrink-0 px-4 pb-4 min-h-[70vh]">
+          <h2 className="mb-4 text-xl font-bold text-foreground">Stüdyolarımız</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {studios.map((studio) => (
+              <div
+                key={studio.id}
+                onClick={() => onStudioSelect(studio.id)}
+                className="flex cursor-pointer flex-col overflow-hidden rounded-xl border border-border bg-surface transition-all"
+              >
+                {/* Image - Top */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-background">
                   <Image
                     src={studio.imageUrl}
                     alt={studio.name}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover"
                   />
-                  {/* Favorite Icon */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                    className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm hover:bg-white"
-                  >
-                    <svg
-                      className="h-5 w-5 text-foreground"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                      />
-                    </svg>
-                  </button>
                 </div>
 
-                {/* Card Content */}
-                <div className="mt-3 space-y-1 text-left">
-                  <h3 className="font-bold text-foreground">{studio.name}</h3>
-                  <p className="text-sm text-textMuted">
-                    {studio.headline.length > 50
-                      ? studio.headline.substring(0, 50) + "..."
-                      : studio.headline}
+                {/* Content - Bottom */}
+                <div className="flex flex-col gap-1 p-2">
+                  <h3 className="text-sm font-bold text-foreground line-clamp-1">
+                    {studio.name}
+                  </h3>
+                  <p className="text-xs text-textMuted line-clamp-2">
+                    {studio.headline}
                   </p>
                 </div>
               </div>
-            </button>
-          ))}
+            ))}
+          </div>
         </div>
+
+        {/* Footer */}
+        <footer className="shrink-0 bg-[#262b32] px-4 py-4">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-left text-sm leading-tight text-white">
+              Fikirlerini, yeteneklerini ve projelerini Divizyon&apos;un üretim ağıyla buluştur.
+            </p>
+            <a
+              href="https://divizyon.typeform.com/to/tLs5N2lu?typeform-source=www.divizyon.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 rounded-full bg-accent px-4 py-2 text-xs font-semibold text-[#262b32] transition-all hover:opacity-90 whitespace-nowrap"
+            >
+              Komünite&apos;ye Başvur
+            </a>
+          </div>
+        </footer>
       </div>
     </div>
   );
