@@ -83,7 +83,7 @@ export function BookingPage() {
                 className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all hover:opacity-90 hover:shadow-md"
                 style={{ backgroundColor: '#262b32' }}
               >
-                Divizyon&apos;a Git
+                Divizyon&#39;a Git
                 <svg
                   className="h-4 w-4"
                   fill="none"
@@ -166,7 +166,7 @@ export function BookingPage() {
           <div className="container-responsive py-8">
             <div className="flex items-center justify-between gap-8">
               <p className="text-lg leading-relaxed text-white">
-                Fikirlerini, yeteneklerini ve projelerini Divizyon&apos;un üretim ağıyla buluştur.
+                Fikirlerini, yeteneklerini ve projelerini Divizyon&#39;un üretim ağıyla buluştur.
               </p>
               <a
                 href="https://divizyon.typeform.com/to/tLs5N2lu?typeform-source=www.divizyon.org"
