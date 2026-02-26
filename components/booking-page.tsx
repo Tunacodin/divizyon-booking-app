@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
+import { Video, Mic, Server, Film, Users } from "lucide-react";
 import { studios } from "@/lib/studios";
 import { StudioListItem } from "@/components/studio-list-item";
 import { StudioDetailCard } from "@/components/studio-detail-card";
@@ -16,6 +17,14 @@ export function BookingPage() {
 
   const [selectedId, setSelectedId] = useState(activeStudios[0]?.id ?? "");
   const [mobileView, setMobileView] = useState<"discovery" | "detail">("discovery");
+
+  const studioIcons: Record<string, React.ReactNode> = {
+    "greenbox-studyosu": <Video className="h-5 w-5" />,
+    "ses-ve-miksaj-studyosu": <Mic className="h-5 w-5" />,
+    "render-studyosu": <Server className="h-5 w-5" />,
+    "post-produksiyon-studyosu": <Film className="h-5 w-5" />,
+    "toplanti-odasi": <Users className="h-5 w-5" />,
+  };
 
   const selectedStudio = activeStudios.find((s) => s.id === selectedId);
 
@@ -98,7 +107,8 @@ export function BookingPage() {
           <div className="container-responsive py-6 lg:py-8">
             <h1 className="mx-auto max-w-3xl text-center text-xl font-bold leading-tight text-foreground lg:text-2xl">
               Fikirlerini en yüksek kalitede hayata geçirmen için tasarlanmış,
-              en yeni teknolojilerle donatılmış özel üretim alanlarımızla tanış.
+              en yeni teknolojilerle donatılmış özel üretim alanlarımızla tanış.{" "}
+              Hemen Randevu Oluştur
             </h1>
           </div>
         </section>
@@ -119,6 +129,7 @@ export function BookingPage() {
                       title={studio.name}
                       isSelected={studio.id === selectedId}
                       onClick={() => setSelectedId(studio.id)}
+                      icon={studioIcons[studio.id]}
                     />
                   ))}
                 </div>
@@ -131,7 +142,7 @@ export function BookingPage() {
                 {selectedStudio ? (
                   <div
                     key={selectedStudio.id}
-                    className="h-full animate-slideIn"
+                    className="h-full animate-slideIn mt-6"
                   >
                     <StudioDetailCard
                       title={selectedStudio.name}
