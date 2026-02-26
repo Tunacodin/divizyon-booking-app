@@ -30,7 +30,7 @@ export function MobileDiscovery({ studios, onStudioSelect }: Props) {
             className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold text-white"
             style={{ backgroundColor: '#262b32' }}
           >
-            Divizyon&apos;a Git
+            Divizyon&#39;a Git
             <svg
               className="h-3 w-3"
               fill="none"
@@ -97,7 +97,7 @@ export function MobileDiscovery({ studios, onStudioSelect }: Props) {
         <footer className="shrink-0 bg-[#262b32] px-4 py-4">
           <div className="flex items-center justify-between gap-3">
             <p className="text-left text-sm leading-tight text-white">
-              Fikirlerini, yeteneklerini ve projelerini Divizyon&apos;un üretim ağıyla buluştur.
+              Fikirlerini, yeteneklerini ve projelerini Divizyon&#39;un üretim ağıyla buluştur.
             </p>
             <a
               href="https://divizyon.typeform.com/to/tLs5N2lu?typeform-source=www.divizyon.org"
@@ -105,7 +105,7 @@ export function MobileDiscovery({ studios, onStudioSelect }: Props) {
               rel="noopener noreferrer"
               className="shrink-0 rounded-full bg-accent px-4 py-2 text-xs font-semibold text-[#262b32] transition-all hover:opacity-90 whitespace-nowrap"
             >
-              Komünite&apos;ye Başvur
+              Komünite&#39;ye Başvur
             </a>
           </div>
         </footer>
