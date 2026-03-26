@@ -89,7 +89,7 @@ export function CircleLoginModal({
             Divizyon Ağ Üyelerine Özel Giriş
           </h2>
           <p className="mt-2 text-sm text-textMuted">
-            Randevu oluşturabilmek için Divizyon Ağ üyelik e-postanızı girin.
+            Randevu oluşturabilmek için Divizyon Ağ üyelik e-postanızı giriniz.
           </p>
         </div>
 
