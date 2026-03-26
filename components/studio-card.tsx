@@ -124,7 +124,7 @@ export function StudioCard({
           }}
           className="shrink-0"
         >
-          <span className="hidden sm:inline">Randevu</span>
+          <span className="hidden sm:inline">Rezervasyon</span>
           <span className="sm:hidden">
             <svg
               className="h-4 w-4"

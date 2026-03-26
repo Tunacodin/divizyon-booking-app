@@ -75,7 +75,7 @@ export function CalendlyModal({ isOpen, onClose, url, title }: Props) {
           <div>
             <h2 className="text-lg font-bold text-foreground">{title}</h2>
             <p className="mt-0.5 text-sm text-textMuted">
-              Randevu oluşturmak için tarih seçin
+              Rezervasyon oluşturmak için tarih seçin
             </p>
           </div>
           <button
@@ -104,7 +104,7 @@ export function CalendlyModal({ isOpen, onClose, url, title }: Props) {
           {/* Calendly iFrame */}
           <iframe
             key={iframeSrc}
-            title={`${title} - Randevu Takvimi`}
+            title={`${title} - Rezervasyon Takvimi`}
             src={iframeSrc}
             referrerPolicy="no-referrer-when-downgrade"
             onLoad={() => setLoaded(true)}

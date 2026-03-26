@@ -34,7 +34,7 @@ export function StudioDetailCard({
   }, [images.length]);
 
   return (
-    <article className="grid h-full grid-rows-[auto_1fr] overflow-hidden rounded-2xl border border-border bg-surface">
+    <article className="overflow-hidden rounded-2xl border border-border bg-surface">
       {/* Image Carousel - Responsive height */}
       <div className="relative w-full overflow-hidden bg-background aspect-[16/9] lg:aspect-[2/1]">
         <Image
@@ -115,7 +115,7 @@ export function StudioDetailCard({
             }}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-accent/90 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 active:scale-[0.98] lg:text-base lg:py-3"
           >
-            Randevu Oluştur
+            Rezervasyon Oluştur
           </button>
         </div>
       </div>

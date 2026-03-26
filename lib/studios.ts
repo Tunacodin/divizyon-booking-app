@@ -39,7 +39,7 @@ export const studios: Studio[] = [
     location: "Divizyon, Konya",
     active: true,
     order: 2,
-    calendlyUrl: "https://calendly.com/piksel-divizyon/piksel-divizyon-misafir-randevu?embed_domain=www.divizyon.org&embed_type=PopupText&hide_event_type_details=1&hide_gdpr_banner=1",
+    calendlyUrl: "https://calendly.com/akustik-divizyon/akustik-divizyon-misafir-randevu?embed_domain=www.divizyon.org&embed_type=PopupText&hide_event_type_details=1&hide_gdpr_banner=1",
   },
   {
     id: "render-studyosu",
@@ -52,7 +52,7 @@ export const studios: Studio[] = [
     location: "Divizyon, Konya",
     active: true,
     order: 3,
-    calendlyUrl: DEFAULT_CALENDLY_URL,
+    calendlyUrl: "https://calendly.com/piksel-divizyon/piksel-divizyon-misafir-randevu?embed_domain=www.divizyon.org&embed_type=PopupText&hide_event_type_details=1&hide_gdpr_banner=1",
   },
   {
     id: "post-produksiyon-studyosu",

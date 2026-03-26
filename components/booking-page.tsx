@@ -9,7 +9,6 @@ import { StudioListItem } from "@/components/studio-list-item";
 import { StudioDetailCard } from "@/components/studio-detail-card";
 import { MobileDiscovery } from "@/components/mobile-discovery";
 import { MobileDetail } from "@/components/mobile-detail";
-import { CalendlyEmbed } from "@/components/calendly-embed";
 import { CircleLoginModal } from "@/components/circle-login-modal";
 
 export function BookingPage() {
@@ -34,7 +33,6 @@ export function BookingPage() {
 
   const selectedStudio = activeStudios.find((s) => s.id === selectedId);
 
-  // Reset right panel to detail when switching studios
   const handleStudioSelect = useCallback((studioId: string) => {
     setSelectedId(studioId);
     setDesktopRightPanel("detail");
@@ -58,7 +56,6 @@ export function BookingPage() {
 
   const handleLoginSuccess = useCallback(() => {
     setShowLoginModal(false);
-    // After successful login, trigger booking
     if (isDesktop()) {
       setDesktopRightPanel("calendly");
     } else if (selectedStudio && typeof window !== "undefined" && window.Calendly) {
@@ -105,9 +102,9 @@ export function BookingPage() {
 
       {/* Desktop View (>= lg) */}
       <main className="hidden min-h-screen flex-col bg-background lg:flex">
-        {/* Header with Logo - Fixed height */}
+        {/* Header */}
         <header className="shrink-0 border-b border-border bg-surface/80 backdrop-blur-sm">
-          <div className="container-responsive py-4">
+          <div className="mx-auto w-full max-w-5xl px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="relative h-8 w-32">
                 <Image
@@ -157,56 +154,52 @@ export function BookingPage() {
           </div>
         </header>
 
-        {/* Hero Section - Compact, fixed height */}
+        {/* Hero */}
         <section className="shrink-0 bg-gradient-to-b from-surface to-background">
-          <div className="container-responsive py-6 lg:py-8">
-            <h1 className="mx-auto max-w-3xl text-center text-xl font-bold leading-tight text-foreground lg:text-2xl">
-              Fikirlerini en yüksek kalitede hayata geçirmen için tasarlanmış,
-              en yeni teknolojilerle donatılmış özel üretim alanlarımızla tanış.{" "}
-              Hemen Randevu Oluştur!
-            </h1>
+          <div className="mx-auto w-full max-w-5xl px-6 py-6">
+            <p className="text-center text-lg font-semibold leading-relaxed text-foreground">
+              Üretmek için ihtiyaç duyduğun stüdyoyu seçebilir ve hemen rezervasyon yapabilirsin!
+            </p>
           </div>
         </section>
 
-        {/* Main Content: Sidebar + Detail/Calendly */}
-        <section className="flex-1 flex items-start justify-center py-4 lg:py-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[16rem_auto] xl:grid-cols-[20rem_auto] gap-4 lg:gap-6 items-start">
-            {/* Sidebar - Studio List */}
-            <aside className="flex flex-col lg:sticky lg:top-6">
-              <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-textMuted">
-                Stüdyolar
-              </h2>
-              <div className="flex flex-col gap-2 lg:gap-3">
-                {activeStudios.map((studio) => (
-                  <StudioListItem
-                    key={studio.id}
-                    title={studio.name}
-                    isSelected={studio.id === selectedId}
-                    onClick={() => handleStudioSelect(studio.id)}
-                    icon={studioIcons[studio.id]}
-                  />
-                ))}
-              </div>
-            </aside>
+        {/* Main Content: 4-8 col grid */}
+        <section className="flex-1 py-6">
+          <div className="mx-auto w-full max-w-5xl px-6">
+            <div className="grid grid-cols-12 gap-6">
+              {/* Sidebar - 4 col */}
+              <aside className="col-span-4">
+                <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-textMuted">
+                  Stüdyolar
+                </h2>
+                <div className="flex flex-col gap-2">
+                  {activeStudios.map((studio) => (
+                    <StudioListItem
+                      key={studio.id}
+                      title={studio.name}
+                      isSelected={studio.id === selectedId}
+                      onClick={() => handleStudioSelect(studio.id)}
+                      icon={studioIcons[studio.id]}
+                    />
+                  ))}
+                </div>
+              </aside>
 
-            {/* Right Panel - Detail or Calendly */}
-            <div className="w-full max-w-md lg:max-w-lg mx-auto lg:mx-0">
-              <div className="h-[65vh]">
+              {/* Right Panel - 8 col */}
+              <div className="col-span-8">
                 {desktopRightPanel === "calendly" && selectedStudio ? (
-                  <div className="h-full animate-slideIn">
-                    <div className="h-full overflow-hidden rounded-2xl border border-border bg-white">
-                      <CalendlyEmbed
-                        url={selectedStudio.calendlyUrl}
-                        title={selectedStudio.name}
-                        showHeader={false}
-                        minHeightClassName="min-h-0 h-full"
-                      />
-                    </div>
+                  <div className="animate-slideIn overflow-hidden rounded-2xl border border-border bg-white">
+                    <iframe
+                      title={`${selectedStudio.name} - Rezervasyon Takvimi`}
+                      src={selectedStudio.calendlyUrl.replace(/embed_type=PopupText/gi, "embed_type=Inline")}
+                      className="w-full border-0"
+                      style={{ height: 700, background: "#fff" }}
+                    />
                   </div>
                 ) : selectedStudio ? (
                   <div
                     key={selectedStudio.id}
-                    className="h-full w-full animate-slideIn"
+                    className="animate-slideIn"
                   >
                     <StudioDetailCard
                       title={selectedStudio.name}
@@ -218,7 +211,7 @@ export function BookingPage() {
                     />
                   </div>
                 ) : (
-                  <div className="flex h-full items-center justify-center rounded-2xl border border-border bg-surface">
+                  <div className="flex items-center justify-center rounded-2xl border border-border bg-surface p-12">
                     <p className="text-textMuted">Lütfen bir stüdyo seçin.</p>
                   </div>
                 )}
@@ -226,7 +219,6 @@ export function BookingPage() {
             </div>
           </div>
         </section>
-
       </main>
     </>
   );

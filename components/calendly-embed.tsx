@@ -108,7 +108,7 @@ export function CalendlyEmbed({
         {/* Calendly iFrame */}
         <iframe
           key={iframeSrc}
-          title={`${title} - Randevu Takvimi`}
+          title={`${title} - Rezervasyon Takvimi`}
           src={iframeSrc}
           width="100%"
           loading="lazy"

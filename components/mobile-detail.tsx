@@ -115,7 +115,7 @@ export function MobileDetail({ studio, onBack, onBook }: Props) {
               onClick={onBook}
               className="shrink-0 rounded-xl bg-accent px-6 py-2.5 text-sm font-bold text-white shadow-md transition-all hover:bg-accent/90 active:scale-95"
             >
-              Randevu Oluştur
+              Rezervasyon Oluştur
             </button>
           </div>
 

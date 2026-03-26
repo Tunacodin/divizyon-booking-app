@@ -88,8 +88,17 @@ export function CircleLoginModal({
           <h2 className="text-lg font-bold text-foreground sm:text-xl">
             Divizyon Ağ Üyelerine Özel Giriş
           </h2>
-          <p className="mt-2 text-sm text-textMuted">
-            Randevu oluşturabilmek için Divizyon Ağ üyelik e-postanızı giriniz.
+          <p className="mt-2 text-sm leading-relaxed text-textMuted">
+            Lütfen rezervasyon yapabilmek için Divizyon | Komünite&#39;ye kayıt olduğun e-posta adresini gir. Eğer Komünite&#39;ye üye değilsen,{" "}
+            <a
+              href="https://www.divizyon.org/studyolar.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-accent underline underline-offset-2 transition-colors hover:text-accent/80"
+            >
+              buraya tıklayarak
+            </a>{" "}
+            herkese açık rezervasyon saatlerinden yararlanabilirsin.
           </p>
         </div>
 

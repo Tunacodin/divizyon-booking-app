@@ -55,7 +55,7 @@ export function StudioGridCard({
             onClick={onBookClick}
             className="w-full sm:w-auto"
           >
-            Randevu Oluştur
+            Rezervasyon Oluştur
           </Button>
         </div>
       </div>

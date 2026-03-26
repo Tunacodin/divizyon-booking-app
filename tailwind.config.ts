@@ -19,7 +19,17 @@ const config: Config = {
         textMuted: "rgb(var(--color-text-muted) / <alpha-value>)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        sans: [
+          "system-ui",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica",
+          "Arial",
+          "sans-serif",
+        ],
       },
       boxShadow: {
         elev1: "var(--shadow-elev-1)",
