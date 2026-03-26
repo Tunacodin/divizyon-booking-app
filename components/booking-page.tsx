@@ -191,7 +191,7 @@ export function BookingPage() {
 
             {/* Right Panel - Detail or Calendly */}
             <div className="w-full max-w-md lg:max-w-lg mx-auto lg:mx-0">
-              <div className="h-[70vh] lg:h-[65vh]">
+              <div>
                 {desktopRightPanel === "calendly" && selectedStudio ? (
                   <div className="h-full animate-slideIn">
                     <div className="h-full overflow-hidden rounded-2xl border border-border bg-white">
