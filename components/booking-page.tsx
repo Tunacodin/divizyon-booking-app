@@ -4,7 +4,6 @@ import { useMemo, useState, useCallback } from "react";
 import Image from "next/image";
 import { Video, Mic, Server, Film } from "lucide-react";
 import { studios } from "@/lib/studios";
-import { cn } from "@/lib/utils";
 import { useCircleAuth } from "@/lib/use-circle-auth";
 import { StudioListItem } from "@/components/studio-list-item";
 import { StudioDetailCard } from "@/components/studio-detail-card";
@@ -191,10 +190,7 @@ export function BookingPage() {
             </aside>
 
             {/* Right Panel - Detail or Calendly */}
-            <div className={cn(
-              "w-full mx-auto lg:mx-0",
-              "max-w-2xl",
-            )}>
+            <div className="w-full max-w-md lg:max-w-lg mx-auto lg:mx-0">
               <div className="h-[70vh] lg:h-[65vh]">
                 {desktopRightPanel === "calendly" && selectedStudio ? (
                   <div className="h-full animate-slideIn">
