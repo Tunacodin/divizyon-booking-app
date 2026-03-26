@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "Divizyon | Stüdyo Rezervasyon",
   description: "Divizyon stüdyoları için Calendly üzerinden hızlı rezervasyon.",
   icons: {
-    icon: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: '/favicon.png',
+    apple: '/favicon.png',
   },
 };
 

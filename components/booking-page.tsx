@@ -191,7 +191,7 @@ export function BookingPage() {
                   <div className="animate-slideIn overflow-hidden rounded-2xl border border-border bg-white">
                     <iframe
                       title={`${selectedStudio.name} - Rezervasyon Takvimi`}
-                      src={selectedStudio.calendlyUrl.replace(/embed_type=PopupText/gi, "embed_type=Inline")}
+                      src={selectedStudio.calendlyUrl}
                       className="w-full border-0"
                       style={{ height: 700, background: "#fff" }}
                     />

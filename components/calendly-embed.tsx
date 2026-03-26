@@ -11,8 +11,7 @@ type Props = {
 };
 
 function normalizeCalendlyUrl(url: string) {
-  // Replace PopupText embed_type with Inline for iframe embedding
-  return url.replace(/embed_type=PopupText/gi, "embed_type=Inline");
+  return url;
 }
 
 function withQueryParam(url: string, key: string, value: string) {
