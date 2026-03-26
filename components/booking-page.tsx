@@ -193,7 +193,7 @@ export function BookingPage() {
             {/* Right Panel - Detail or Calendly */}
             <div className={cn(
               "w-full mx-auto lg:mx-0",
-              desktopRightPanel === "calendly" ? "max-w-[550px]" : "max-w-2xl",
+              "max-w-2xl",
             )}>
               <div className="h-[70vh] lg:h-[65vh]">
                 {desktopRightPanel === "calendly" && selectedStudio ? (
