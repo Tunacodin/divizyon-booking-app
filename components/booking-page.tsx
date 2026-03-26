@@ -158,7 +158,7 @@ export function BookingPage() {
         </header>
 
         {/* Hero Section - Compact, fixed height */}
-        <section className="shrink-0 border-b border-border bg-gradient-to-b from-surface to-background">
+        <section className="shrink-0 bg-gradient-to-b from-surface to-background">
           <div className="container-responsive py-6 lg:py-8">
             <h1 className="mx-auto max-w-3xl text-center text-xl font-bold leading-tight text-foreground lg:text-2xl">
               Fikirlerini en yüksek kalitede hayata geçirmen için tasarlanmış,
