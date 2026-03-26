@@ -1,13 +1,17 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
 import Image from "next/image";
-import { Video, Mic, Server, Film, Users } from "lucide-react";
+import { Video, Mic, Server, Film } from "lucide-react";
 import { studios } from "@/lib/studios";
+import { cn } from "@/lib/utils";
+import { useCircleAuth } from "@/lib/use-circle-auth";
 import { StudioListItem } from "@/components/studio-list-item";
 import { StudioDetailCard } from "@/components/studio-detail-card";
 import { MobileDiscovery } from "@/components/mobile-discovery";
 import { MobileDetail } from "@/components/mobile-detail";
+import { CalendlyEmbed } from "@/components/calendly-embed";
+import { CircleLoginModal } from "@/components/circle-login-modal";
 
 export function BookingPage() {
   const activeStudios = useMemo(
@@ -17,22 +21,51 @@ export function BookingPage() {
 
   const [selectedId, setSelectedId] = useState(activeStudios[0]?.id ?? "");
   const [mobileView, setMobileView] = useState<"discovery" | "detail">("discovery");
+  const [desktopRightPanel, setDesktopRightPanel] = useState<"detail" | "calendly">("detail");
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const auth = useCircleAuth();
 
   const studioIcons: Record<string, React.ReactNode> = {
     "greenbox-studyosu": <Video className="h-5 w-5" />,
     "ses-ve-miksaj-studyosu": <Mic className="h-5 w-5" />,
     "render-studyosu": <Server className="h-5 w-5" />,
     "post-produksiyon-studyosu": <Film className="h-5 w-5" />,
-    "toplanti-odasi": <Users className="h-5 w-5" />,
   };
 
   const selectedStudio = activeStudios.find((s) => s.id === selectedId);
 
-  const openBooking = () => {
-    if (selectedStudio && typeof window !== "undefined" && window.Calendly) {
+  // Reset right panel to detail when switching studios
+  const handleStudioSelect = useCallback((studioId: string) => {
+    setSelectedId(studioId);
+    setDesktopRightPanel("detail");
+  }, []);
+
+  const isDesktop = () =>
+    typeof window !== "undefined" && window.innerWidth >= 1024;
+
+  const openBooking = useCallback(() => {
+    if (!auth.isAuthenticated) {
+      setShowLoginModal(true);
+      return;
+    }
+
+    if (isDesktop()) {
+      setDesktopRightPanel("calendly");
+    } else if (selectedStudio && typeof window !== "undefined" && window.Calendly) {
       window.Calendly.initPopupWidget({ url: selectedStudio.calendlyUrl });
     }
-  };
+  }, [auth.isAuthenticated, selectedStudio]);
+
+  const handleLoginSuccess = useCallback(() => {
+    setShowLoginModal(false);
+    // After successful login, trigger booking
+    if (isDesktop()) {
+      setDesktopRightPanel("calendly");
+    } else if (selectedStudio && typeof window !== "undefined" && window.Calendly) {
+      window.Calendly.initPopupWidget({ url: selectedStudio.calendlyUrl });
+    }
+  }, [selectedStudio]);
 
   const handleMobileStudioSelect = (studioId: string) => {
     setSelectedId(studioId);
@@ -45,6 +78,16 @@ export function BookingPage() {
 
   return (
     <>
+      {/* Circle Login Modal */}
+      <CircleLoginModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onSuccess={handleLoginSuccess}
+        isLoading={auth.isLoading}
+        error={auth.error}
+        verifyMembership={auth.verifyMembership}
+      />
+
       {/* Mobile/Tablet View (< lg) */}
       <div className="min-h-screen lg:hidden">
         {mobileView === "discovery" ? (
@@ -76,28 +119,41 @@ export function BookingPage() {
                   priority
                 />
               </div>
-              <a
-                href="https://www.divizyon.org/index.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all hover:opacity-90 hover:shadow-md"
-                style={{ backgroundColor: '#262b32' }}
-              >
-                Divizyon&#39;a Git
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <div className="flex items-center gap-3">
+                {!auth.isAuthenticated && (
+                  <a
+                    href="https://divizyon.typeform.com/to/tLs5N2lu?typeform-source=www.divizyon.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all hover:opacity-90 hover:shadow-md"
+                    style={{ backgroundColor: '#262b32' }}
+                  >
+                    Komünite&#39;ye Başvur
+                  </a>
+                )}
+                <a
+                  href="https://www.divizyon.org/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all hover:opacity-90 hover:shadow-md"
+                  style={{ backgroundColor: '#262b32' }}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
+                  Divizyon&#39;a Git
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </header>
@@ -113,7 +169,7 @@ export function BookingPage() {
           </div>
         </section>
 
-        {/* Main Content: Sidebar + Detail - Responsive grid layout */}
+        {/* Main Content: Sidebar + Detail/Calendly */}
         <section className="flex-1 flex items-start justify-center py-4 lg:py-6">
           <div className="grid grid-cols-1 lg:grid-cols-[16rem_auto] xl:grid-cols-[20rem_auto] gap-4 lg:gap-6 items-start">
             {/* Sidebar - Studio List */}
@@ -127,17 +183,31 @@ export function BookingPage() {
                     key={studio.id}
                     title={studio.name}
                     isSelected={studio.id === selectedId}
-                    onClick={() => setSelectedId(studio.id)}
+                    onClick={() => handleStudioSelect(studio.id)}
                     icon={studioIcons[studio.id]}
                   />
                 ))}
               </div>
             </aside>
 
-            {/* Detail Card - Responsive sizing */}
-            <div className="w-full max-w-md lg:max-w-lg mx-auto lg:mx-0">
+            {/* Right Panel - Detail or Calendly */}
+            <div className={cn(
+              "w-full mx-auto lg:mx-0",
+              desktopRightPanel === "calendly" ? "max-w-[550px]" : "max-w-2xl",
+            )}>
               <div className="h-[70vh] lg:h-[65vh]">
-                {selectedStudio ? (
+                {desktopRightPanel === "calendly" && selectedStudio ? (
+                  <div className="h-full animate-slideIn">
+                    <div className="h-full overflow-hidden rounded-2xl border border-border bg-white">
+                      <CalendlyEmbed
+                        url={selectedStudio.calendlyUrl}
+                        title={selectedStudio.name}
+                        showHeader={false}
+                        minHeightClassName="min-h-0 h-full"
+                      />
+                    </div>
+                  </div>
+                ) : selectedStudio ? (
                   <div
                     key={selectedStudio.id}
                     className="h-full w-full animate-slideIn"
@@ -161,24 +231,6 @@ export function BookingPage() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="shrink-0 mt-12 lg:mt-8 border-t border-border bg-[#262b32]">
-          <div className="container-responsive py-8">
-            <div className="flex items-center justify-between gap-8">
-              <p className="text-lg leading-relaxed text-white">
-                Fikirlerini, yeteneklerini ve projelerini Divizyon&#39;un üretim ağıyla buluştur.
-              </p>
-              <a
-                href="https://divizyon.typeform.com/to/tLs5N2lu?typeform-source=www.divizyon.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0 rounded-full bg-accent px-8 py-3 text-base font-semibold text-[#262b32] transition-all hover:opacity-90"
-              >
-                Komünite&apos;ye Başvur
-              </a>
-            </div>
-          </div>
-        </footer>
       </main>
     </>
   );

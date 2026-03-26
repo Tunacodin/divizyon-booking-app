@@ -10,6 +10,11 @@ type Props = {
   showHeader?: boolean;
 };
 
+function normalizeCalendlyUrl(url: string) {
+  // Replace PopupText embed_type with Inline for iframe embedding
+  return url.replace(/embed_type=PopupText/gi, "embed_type=Inline");
+}
+
 function withQueryParam(url: string, key: string, value: string) {
   const hasQuery = url.includes("?");
   const sep = hasQuery ? "&" : "?";
@@ -27,8 +32,8 @@ export function CalendlyEmbed({
   const [errored, setErrored] = useState(false);
 
   const iframeSrc = useMemo(() => {
-    // Calendly sıkça GDPR banner’ı gösterir; embed içinde sadeleşsin diye kapatıyoruz.
-    return withQueryParam(url, "hide_gdpr_banner", "1");
+    const normalized = normalizeCalendlyUrl(url);
+    return withQueryParam(normalized, "hide_gdpr_banner", "1");
   }, [url]);
 
   useEffect(() => {
@@ -44,7 +49,14 @@ export function CalendlyEmbed({
   }, [iframeSrc]);
 
   return (
-    <section className="overflow-hidden rounded-2xl border border-border bg-surface shadow-elev1">
+    <section
+      className={cn(
+        "overflow-hidden",
+        showHeader
+          ? "rounded-2xl border border-border bg-surface shadow-elev1"
+          : "h-full",
+      )}
+    >
       {showHeader && (
         <header className="border-b border-border bg-background/50 p-4 sm:p-6">
           <h2 className="text-base font-bold text-foreground sm:text-lg">
@@ -65,14 +77,22 @@ export function CalendlyEmbed({
         </header>
       )}
 
-      <div className={cn("relative", showHeader ? "p-4 sm:p-6" : "p-0")}>
+      <div
+        className={cn(
+          "relative",
+          showHeader ? "p-4 sm:p-6" : "h-full p-0",
+        )}
+      >
         {/* Loading State */}
         {!loaded && (
           <div
             aria-live="polite"
             aria-busy="true"
             className={cn(
-              "absolute inset-0 flex items-center justify-center rounded-xl border border-border bg-background/80 backdrop-blur-sm",
+              "absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm",
+              showHeader
+                ? "rounded-xl border border-border"
+                : "rounded-none",
               minHeightClassName ?? "min-h-[700px]",
             )}
           >
@@ -90,15 +110,18 @@ export function CalendlyEmbed({
           key={iframeSrc}
           title={`${title} - Randevu Takvimi`}
           src={iframeSrc}
+          width="100%"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           onLoad={() => setLoaded(true)}
           onError={() => setErrored(true)}
+          style={showHeader ? undefined : { width: "100%", height: "100%", background: "#ffffff" }}
           className={cn(
-            "relative w-full rounded-xl border border-border bg-background",
+            "relative w-full bg-white",
+            showHeader
+              ? "rounded-xl border border-border"
+              : "h-full rounded-none border-0",
             minHeightClassName ?? "min-h-[700px]",
-            loaded ? "opacity-100" : "opacity-0",
-            "transition-opacity duration-300",
           )}
         />
 
@@ -146,4 +169,3 @@ export function CalendlyEmbed({
     </section>
   );
 }
-

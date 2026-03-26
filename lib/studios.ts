@@ -67,18 +67,5 @@ export const studios: Studio[] = [
     order: 4,
     calendlyUrl: "https://calendly.com/piksel-divizyon/piksel-divizyon-misafir-randevu?embed_domain=www.divizyon.org&embed_type=PopupText&hide_event_type_details=1&hide_gdpr_banner=1",
   },
-  {
-    id: "toplanti-odasi",
-    name: "Toplantı Odası",
-    headline: "Ekibinle Bir Araya Gel",
-    description:
-      "Proje toplantıları, beyin fırtınası seansları veya ekip çalışmaları için tasarlanmış konforlu toplantı odamızda, fikirlerini paylaş ve projelerini planla.",
-    imageUrl: "/assets/toplantıı.png",
-    images: ["/assets/toplantıı.png", "/assets/cs6.png", "/assets/cs9.png"],
-    location: "Divizyon, Konya",
-    active: true,
-    order: 5,
-    calendlyUrl: DEFAULT_CALENDLY_URL,
-  },
 ];
 

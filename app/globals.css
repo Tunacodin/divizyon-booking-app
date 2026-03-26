@@ -21,23 +21,6 @@
   --shadow-elev-1: 0 1px 2px 0 rgb(0 0 0 / 0.06), 0 1px 3px 0 rgb(0 0 0 / 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg-primary: 9 12 10;
-    --color-bg-secondary: 14 20 16;
-    --color-border-default: 35 44 40;
-    --color-border-hover: 52 64 58;
-    --color-accent: 250 183 88;
-    --color-text-primary: 241 245 249;
-    --color-text-secondary: 203 213 225;
-    --color-text-muted: 148 163 184;
-
-    --background: var(--color-bg-primary);
-    --foreground: var(--color-text-primary);
-
-    --shadow-elev-1: 0 1px 2px 0 rgb(0 0 0 / 0.35), 0 1px 3px 0 rgb(0 0 0 / 0.45);
-  }
-}
 
 * {
   -webkit-font-smoothing: antialiased;
