@@ -41,6 +41,11 @@ export function BookingPage() {
   const isDesktop = () =>
     typeof window !== "undefined" && window.innerWidth >= 1024;
 
+  const getCalendlyUrl = useCallback((studio: typeof selectedStudio) => {
+    if (!studio) return "";
+    return (auth.isAuthenticated && studio.memberCalendlyUrl) ? studio.memberCalendlyUrl : studio.calendlyUrl;
+  }, [auth.isAuthenticated]);
+
   const openBooking = useCallback(() => {
     if (!auth.isAuthenticated) {
       setShowLoginModal(true);
@@ -50,18 +55,18 @@ export function BookingPage() {
     if (isDesktop()) {
       setDesktopRightPanel("calendly");
     } else if (selectedStudio && typeof window !== "undefined" && window.Calendly) {
-      window.Calendly.initPopupWidget({ url: selectedStudio.calendlyUrl });
+      window.Calendly.initPopupWidget({ url: getCalendlyUrl(selectedStudio) });
     }
-  }, [auth.isAuthenticated, selectedStudio]);
+  }, [auth.isAuthenticated, selectedStudio, getCalendlyUrl]);
 
   const handleLoginSuccess = useCallback(() => {
     setShowLoginModal(false);
     if (isDesktop()) {
       setDesktopRightPanel("calendly");
     } else if (selectedStudio && typeof window !== "undefined" && window.Calendly) {
-      window.Calendly.initPopupWidget({ url: selectedStudio.calendlyUrl });
+      window.Calendly.initPopupWidget({ url: getCalendlyUrl(selectedStudio) });
     }
-  }, [selectedStudio]);
+  }, [selectedStudio, getCalendlyUrl]);
 
   const handleMobileStudioSelect = (studioId: string) => {
     setSelectedId(studioId);
@@ -191,7 +196,7 @@ export function BookingPage() {
                   <div className="animate-slideIn overflow-hidden rounded-2xl border border-border bg-white">
                     <iframe
                       title={`${selectedStudio.name} - Rezervasyon Takvimi`}
-                      src={selectedStudio.calendlyUrl}
+                      src={getCalendlyUrl(selectedStudio)}
                       className="w-full border-0"
                       style={{ height: 700, background: "#fff" }}
                     />
